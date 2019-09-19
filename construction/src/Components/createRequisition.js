@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import '../css/siteManager.css';
 import construction from "../Images/construction.png";
+import siteManager from "../Images/siteManager.jpg";
+import {NavLink} from "react-router-dom";
 
 const sectionStyle = {
-    width: "1100px",
+    width: "1080px",
     height: "500px",
     opacity: 0.80,
     paddingRight:"303px",
@@ -11,16 +14,37 @@ const sectionStyle = {
 };
 
 const form ={
-    width: "550px", /* Full width */
-    height: "250",/* Full height */
+    width: "603px", /* Full width */
+    height: "600",/* Full height */
     position:"center",
     border: "5px solid brown",
+};
+
+const siteManager1 ={
+    paddingLeft: "40px",
+    paddingRight:"40px",
+    fontSize:"5px",
 };
 
 export default class extends Component{
 
     render(){
         return(
+            <div>
+                <div className="sidenav">
+                    <br/>
+                    <section style={ siteManager1 }>
+                        <img src={siteManager} width="150px" height="160px"/><br/><br/>
+                        <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Site Manager</h6>
+                    </section>
+                    <br/><br/>
+                    <NavLink to={'/SiteManagerHome'}>HOME</NavLink><br/>
+                    <a href="#">VERIFY PURCHACE ORDER</a><br/>
+                    <a href="#">MATCHING ITEMS</a><br/>
+                    <a href="#">SEARCH PURCHASE ORDERS</a><br/>
+                    <NavLink to={'/createRequisition'}>REQUISITIONS</NavLink>
+                </div>
+
             <div className="container">
                 <section style={ sectionStyle }>
 
@@ -29,7 +53,7 @@ export default class extends Component{
                             <div className="container">
                                 <br/>
                             <form>
-                                <section style={ form }><br/>
+                                <section style={form}><br/>
 
                                         <label className="form-check-label">
                                             <div className="font-weight-danger align-content-md-center">
@@ -53,6 +77,7 @@ export default class extends Component{
                     </div>
 
                 </section>
+            </div>
             </div>
 
         )

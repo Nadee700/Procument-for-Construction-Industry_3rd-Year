@@ -7,6 +7,9 @@ import Home from './Components/Home';
 import Inventory from './Components/Inventory';
 import supervisorHome from './Components/SupervisorHome';
 import SiteManagerHome from './Components/SiteManagerHome';
+import Location from './Components/Location';
+import AuthzEmployee from "./Components/AuthzEmployeeHome";
+import Supplier from "./Components/SupplierHome";
 
 
 class App extends Component {
@@ -49,16 +52,22 @@ class App extends Component {
                                     <Link to={'/Home'} className="nav-link">&nbsp;HOME</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/createRequisition'} className="nav-link">REQUISITION</Link>
+                                    <Link to={'/Inventory'} className="nav-link">SERVICES</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/Inventory'} className="nav-link">SERVICES</Link>
+                                    <Link to={'/Location'} className="nav-link">LOCATIONS</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/supervisorHome'} className="nav-link">CONTACTUS</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/SiteManagerHome'} className="nav-link">ABOUTUS</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={'/AuthzEmployee'} className="nav-link">AUTHORIZEDEMP</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link to={'/Supplier'} className="nav-link">SUPPLIERHOME</Link>
                                 </li>
                             </ul>
                         </div>
@@ -77,6 +86,9 @@ class App extends Component {
                         <Route exact path='/Inventory' component={Inventory}/>
                         <Route exact path='/supervisorHome' component={supervisorHome}/>
                         <Route exact path='/SiteManagerHome' component={SiteManagerHome}/>
+                        <Route exact path='/Location' component={Location}/>
+                        <Route exact path='/AuthzEmployee' component={AuthzEmployee}/>
+                        <Route exact path='/Supplier' component={Supplier}/>
                     </Switch>
                         )};
             </Router>

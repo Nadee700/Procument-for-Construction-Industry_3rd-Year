@@ -21,7 +21,7 @@ export default class extends Component{
                         <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Site Manager</h6>
                     </section>
                     <br/><br/>
-                    <a href="#">HOME</a><br/>
+                    <NavLink to={'/SiteManagerHome'}>HOME</NavLink><br/>
                     <a href="#">VERIFY PURCHACE ORDER</a><br/>
                     <a href="#">MATCHING ITEMS</a><br/>
                     <a href="#">SEARCH PURCHASE ORDERS</a><br/>
