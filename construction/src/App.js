@@ -8,8 +8,23 @@ import Inventory from './Components/Inventory';
 import supervisorHome from './Components/SupervisorHome';
 import SiteManagerHome from './Components/SiteManagerHome';
 import Location from './Components/Location';
-import AuthzEmployee from "./Components/AuthzEmployeeHome";
-import Supplier from "./Components/SupplierHome";
+import AuthzEmployeeHome from "./Components/AuthzEmployeeHome";
+import SupplierHome from "./Components/SupplierHome";
+import InventoryDetails from './Components/InventoryDetails';
+import Login from './Components/Login';
+import Services from './Components/Services';
+import AboutUs from './Components/AboutUs';
+
+
+const background = {
+  //  background: "linear-gradient(to top right, #9999ff 0%, #ffcc99 104%)",
+  //    background: "linear-gradient(to bottom right, #cccc00 0%, #ffffcc 100%)",
+    background: "linear-gradient(to top right, #666699 0%, #ffcc00 100%)",
+};
+
+const backgroundNav = {
+    background: "linear-gradient(to bottom, #ffffff 0%, #ffff99 100%)",
+};
 
 
 class App extends Component {
@@ -41,18 +56,20 @@ class App extends Component {
 
     render() {
         return (
+            <section style={ background }>
             <Router>
                 <br/>
-                <div className="container">
+                    <section style={ background }>
+                        <div className="container">
                     <nav className="navbar navbar-expand-lg navbar-light btn-group-lg bg-transparent">
-                        <Link to={'/'} className="navbar-brand"><b><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i> CONSTRUCTION Industry</i></h3></b></Link>
+                        <Link to={'/Home'} className="navbar-brand"><b><h3>&nbsp;&nbsp;&nbsp;&nbsp;<i>CONSTRUCTION Industry</i></h3></b></Link>
                         <div className="collapse navbar-collapse" id="navbarSupportContent">
                             <ul className="navbar-nav mr-auto">
                                 <li className="nav-item">
                                     <Link to={'/Home'} className="nav-link">&nbsp;HOME</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/Inventory'} className="nav-link">SERVICES</Link>
+                                    <Link to={'/Services'} className="nav-link">SERVICES</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/Location'} className="nav-link">LOCATIONS</Link>
@@ -61,19 +78,21 @@ class App extends Component {
                                     <Link to={'/supervisorHome'} className="nav-link">CONTACTUS</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/SiteManagerHome'} className="nav-link">ABOUTUS</Link>
+                                    <Link to={'/AboutUs'} className="nav-link">ABOUTUS</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link to={'/AuthzEmployee'} className="nav-link">AUTHORIZEDEMP</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/Supplier'} className="nav-link">SUPPLIERHOME</Link>
-                                </li>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <form className="form-inline my-2 my-lg-0">
+                                    <input className="form-control rgba-mdb-color-light mr-sm-0" type="search" placeholder="Search" aria-label="Search"></input>
+                                </form>
+                                &nbsp;&nbsp;
+                                <button className="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+
                             </ul>
                         </div>
                     </nav>
-                </div>
 
+                </div>
+                    </section>
                 {this.state.clickedRequisition ? (
                     <div className="login_style">
                         <createRequisition handleClickInventory={this.handleClickInventory}/>
@@ -87,11 +106,16 @@ class App extends Component {
                         <Route exact path='/supervisorHome' component={supervisorHome}/>
                         <Route exact path='/SiteManagerHome' component={SiteManagerHome}/>
                         <Route exact path='/Location' component={Location}/>
-                        <Route exact path='/AuthzEmployee' component={AuthzEmployee}/>
-                        <Route exact path='/Supplier' component={Supplier}/>
+                        <Route exact path='/AuthzEmployeeHome' component={AuthzEmployeeHome}/>
+                        <Route exact path='/SupplierHome' component={SupplierHome}/>
+                        <Route exact path='/Login' component={Login}/>
+                        <Route exact path='/InventoryDetails' component={InventoryDetails}/>
+                        <Route exact path='/Services' component={Services}/>
+                        <Route exact path='/AboutUs' component={AboutUs}/>
                     </Switch>
                         )};
             </Router>
+            </section>
         )
     }
 }

@@ -7,14 +7,11 @@ import  slide3 from '../Images/construction.png';
 import emergency from '../Images/emergency.jpg';
 import design from '../Images/design.jpg';
 import sustanability from '../Images/sustanability.jpg';
+import Login from "./Login";
 
 const btnSectionStyle = {
-    paddingLeft:"1200px",
-
-};
-const background = {
-    backgroundColor:"#ffe6ff",
-
+    paddingLeft:"250px",
+    fontFamily:"Leelawadee UI",
 };
 
 const form ={
@@ -26,14 +23,40 @@ const form ={
 };
 
 export default class extends Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            clickedDashboard: false,
+        };
+
+
+        this.handleClickDashboard = this.handleClickDashboard.bind(this);
+
+    }
+
+    handleClickDashboard() {
+        this.setState({
+            clickedDashboard: !this.state.clickedDashboard,
+        });
+    }
+
+
     render() {
         return(
-            <section style={ background }><br/>
             <div>
-                <section style={ btnSectionStyle }>
-                    <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit">LOG IN</button><br/>
-                </section>
-                <br/>
+                    {this.state.clickedDashboard ? (
+                        <div className="container">
+                            <Login/>
+                        </div>
+                    ):(
+            <div>
+                <section style={ btnSectionStyle }><br/>
+                    <h4>With us you don’t need to guess, <b>our work will be sure to impress !</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
+                                                         onClick={this.handleClickDashboard}>LOG IN</button></h4>
+                </section><br/>
             <MDBContainer>
                 <MDBCarousel
                     activeItem={1}
@@ -45,25 +68,24 @@ export default class extends Component{
                         <MDBCarouselItem itemId="1">
                             <MDBView>
                                 <img className="d-block w-100"
-                                     src={slide1} alt="First slide" height="500px" width="1100px"/>
+                                     src={slide1} alt="First slide" height="500px" width="2000px"/>
                             </MDBView>
                         </MDBCarouselItem>
                         <MDBCarouselItem itemId="2">
                             <MDBView>
                                 <img className="d-block w-100"
-                                     src={slide2} alt="Second slide" height="500px" width="1100px"/>
+                                     src={slide2} alt="Second slide" height="500px" width="2000px"/>
                             </MDBView>
                         </MDBCarouselItem>
                         <MDBCarouselItem itemId="3">
                             <MDBView>
                                 <img className="d-block w-100"
-                                     src={slide3} alt="Third slide" height="500px" width="1100px"/>
+                                     src={slide3} alt="Third slide" height="500px" width="2000px"/>
                             </MDBView>
                         </MDBCarouselItem>
                     </MDBCarouselInner>
                 </MDBCarousel>
             </MDBContainer>
-            </div>
                 <br/>
                 <div className="container">
 
@@ -103,7 +125,7 @@ export default class extends Component{
                             <div className="col-lg-3 col-md-6  offset-1">
                                 <div className="l_news_item "><br/><br/>
                                     <h3>Design/Build</h3><br/>
-                                    <img src={design} height="200px" width="200px"/>
+                                    <button><img src={design} height="200px" width="200px"/></button>
                                 </div>
                             </div>
                         </section>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -119,9 +141,9 @@ export default class extends Component{
                     </div>
                 </div>
                 </div>
-
-            </section>
+            </div>)}
+                </div>
         )
     }
 
-}
+};

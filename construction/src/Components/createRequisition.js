@@ -3,6 +3,7 @@ import '../css/siteManager.css';
 import construction from "../Images/construction.png";
 import siteManager from "../Images/siteManager.jpg";
 import {NavLink} from "react-router-dom";
+import Inventory from "./Inventory";
 
 const sectionStyle = {
     width: "1080px",
@@ -10,6 +11,7 @@ const sectionStyle = {
     opacity: 0.80,
     paddingRight:"303px",
     paddingLeft:"200px",
+    marginLeft: "54px",
     backgroundImage: `url(${construction})`
 };
 
@@ -26,11 +28,29 @@ const siteManager1 ={
     fontSize:"5px",
 };
 
+
 export default class extends Component{
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            clickedInventory: false,
+        };
+
+
+        this.handleClickInventory = this.handleClickInventory.bind(this);
+
+    }
+
+    handleClickInventory() {
+        this.setState({
+            clickedInventory: !this.state.clickedInventory,
+        });
+    }
 
     render(){
         return(
-            <div>
+            <div><br/><br/>
                 <div className="sidenav">
                     <br/>
                     <section style={ siteManager1 }>
@@ -43,16 +63,18 @@ export default class extends Component{
                     <a href="#">MATCHING ITEMS</a><br/>
                     <a href="#">SEARCH PURCHASE ORDERS</a><br/>
                     <NavLink to={'/createRequisition'}>REQUISITIONS</NavLink>
-                </div>
+                    </div>
 
-            <div className="container">
-                <section style={ sectionStyle }>
+                    <div className="container">
+                            {this.state.clickedInventory ? (
+                                    <Inventory/>
+                                    ):(
 
-                    <div className="col-sm-20 offset-sm-1 align-content-md-center">
-                        <form onSubmit={this.onSubmit}>
-                            <div className="container">
-                                <br/>
-                            <form>
+                                <section style={ sectionStyle }>
+
+                                    <div className="col-sm-20 offset-sm-1 align-content-md-center">
+                                        <form onSubmit={this.onSubmit}>
+                                <div className="container"><br/><br/>
                                 <section style={form}><br/>
 
                                         <label className="form-check-label">
@@ -69,14 +91,10 @@ export default class extends Component{
                                       <button className="btn btn-success col-sm-20 offset-sm-1 align-content-md-center" onClick={this.handleClickInventory}>SHOW INVENTORY</button>
                                     </div>
                                     <br/>
-                                </section>
-                            </form>
-                            </div>
+                                </section></div></form>
 
-                        </form>
-                    </div>
-
-                </section>
+                                    </div>
+                                </section>)}
             </div>
             </div>
 

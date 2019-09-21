@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import Inventory from "../Images/bg2.jpg";
 import BootstrapTable from 'react-bootstrap-table-next';
+import InventoryDetails from './InventoryDetails';
 
 const sectionStyle = {
     width: "1100px",
@@ -8,6 +9,7 @@ const sectionStyle = {
     opacity: 0.80,
     paddingRight:"303px",
     paddingLeft:"200px",
+    marginLeft: "54px",
     backgroundImage: `url(${Inventory})`
 };
 const form ={
@@ -19,40 +21,58 @@ const form ={
 
 
 export default class extends Component {
+    constructor(props) {
+        super(props);
 
-    state = {
-        products: [
-            {
-                id: 1,
-                name: 'TV',
+        this.state = {
+            clickedInventoryDetails: false,
+            products: [
+                {
+                    id: 1,
+                    name: 'TV',
 
+                },
+                {
+                    id: 2,
+                    name: 'Mobile',
+
+                },
+                {
+                    id: 3,
+                    name: 'Book',
+
+                },
+            ],
+            columns: [{
+                dataField: 'id',
+                text: 'ITEM DETAILS'
             },
-            {
-                id: 2,
-                name: 'Mobile',
+                {
+                    dataField: 'name',
+                    text: 'QUANTITY'
+                },]
+        };
 
-            },
-            {
-                id: 3,
-                name: 'Book',
 
-            },
-        ],
-        columns: [{
-            dataField: 'id',
-            text: 'ITEM DETAILS'
-        },
-            {
-                dataField: 'name',
-                text: 'QUANTITY'
-            },]
-    };
+
+        this.handleClickInventoryDetails = this.handleClickInventoryDetails.bind(this);
+
+    }
+
+    handleClickInventoryDetails() {
+        this.setState({
+            clickedInventoryDetails: !this.state.clickedInventoryDetails,
+        });
+    }
 
     render() {
         return (
+            <div className="container">
+                {this.state.clickedInventoryDetails ? (
+                    <InventoryDetails/>
+                ):(
 
-            <div className="container" style={{marginTop: 50}}>
-                <section style={ sectionStyle }><br/>
+                    <section style={ sectionStyle }><br/>
                     <section style={ form }><br/>
                 <BootstrapTable
                     striped
@@ -63,14 +83,13 @@ export default class extends Component {
 
                 <div className="col-sm-20 offset-sm-1 align-content-md-center">
                     <form onSubmit={this.onSubmit}>
-                        <div className="container">
-                            <br/>
+                        <div className="container"><br/>
                             <form>
                                     <div className="col-sm-9 offset-sm-2 ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button className="btn btn-danger col-sm-20 offset-sm-1 align-content-md-center" >MAKE REQUISITION</button>
+                                        <button className="btn btn-danger col-sm-20 offset-sm-1 align-content-md-center" onClick={this.handleClickInventoryDetails}>MAKE REQUISITION</button>
                                     </div>
                                     <br/>
                             </form>
@@ -79,6 +98,7 @@ export default class extends Component {
                 </div>
                     </section>
             </section>
+                    )}
         </div>
     )
 }
