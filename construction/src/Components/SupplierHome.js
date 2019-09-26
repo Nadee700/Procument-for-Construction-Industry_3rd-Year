@@ -23,7 +23,11 @@ export default class extends Component{
                     <a href="#">HOME</a><br/>
                     <a href="#">SHOW REQUISIONS</a><br/>
                     <a href="#">NEW ALERTS</a><br/>
-                    <a href="#">APPROVED REQUISITIONS</a>
+                    <a href="#">APPROVED REQUISITIONS</a><br/>
+
+                    <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
+                            onClick={this.handleClickDashboard}>LOG OUT </button>
+
                 </div>
                 <div className="main">
                     <h2> Home Page</h2>

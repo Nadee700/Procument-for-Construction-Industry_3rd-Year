@@ -14,7 +14,7 @@ import InventoryDetails from './Components/InventoryDetails';
 import Login from './Components/Login';
 import Services from './Components/Services';
 import AboutUs from './Components/AboutUs';
-
+import Register from "./Components/Register";
 
 const background = {
   //  background: "linear-gradient(to top right, #9999ff 0%, #ffcc99 104%)",
@@ -112,6 +112,7 @@ class App extends Component {
                         <Route exact path='/InventoryDetails' component={InventoryDetails}/>
                         <Route exact path='/Services' component={Services}/>
                         <Route exact path='/AboutUs' component={AboutUs}/>
+                        <Route exact path='/Register' component={Register}/>
                     </Switch>
                         )};
             </Router>

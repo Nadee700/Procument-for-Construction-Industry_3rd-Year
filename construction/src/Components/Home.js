@@ -8,9 +8,10 @@ import emergency from '../Images/emergency.jpg';
 import design from '../Images/design.jpg';
 import sustanability from '../Images/sustanability.jpg';
 import Login from "./Login";
+import Register from "./Register";
 
 const btnSectionStyle = {
-    paddingLeft:"250px",
+    paddingLeft:"200px",
     fontFamily:"Leelawadee UI",
 };
 
@@ -27,17 +28,24 @@ export default class extends Component{
         super(props);
 
         this.state = {
-            clickedDashboard: false,
+            clickedLogin: false,
+            clickedRegister:false,
         };
 
 
-        this.handleClickDashboard = this.handleClickDashboard.bind(this);
-
+        this.handleClickedLogin = this.handleClickedLogin.bind(this);
+        this.handleClickedRegister = this.handleClickedRegister.bind(this);
     }
 
-    handleClickDashboard() {
+    handleClickedRegister(){
         this.setState({
-            clickedDashboard: !this.state.clickedDashboard,
+            clickedRegister: !this.state.clickedRegister,
+        });
+    }
+
+    handleClickedLogin() {
+        this.setState({
+            clickedLogin: !this.state.clickedLogin,
         });
     }
 
@@ -45,17 +53,25 @@ export default class extends Component{
     render() {
         return(
             <div>
-                    {this.state.clickedDashboard ? (
+                    {this.state.clickedLogin ? (
                         <div className="container">
                             <Login/>
                         </div>
                     ):(
+                        <div>
+                        {this.state.clickedRegister?(
+                            <div className="container">
+                                <Register/>
+                                </div>
+                        ):(
+                    
             <div>
                 <section style={ btnSectionStyle }><br/>
-                    <h4>With us you don’t need to guess, <b>our work will be sure to impress !</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
-                                                         onClick={this.handleClickDashboard}>LOG IN</button></h4>
+                    <h4>With us you don’t need to guess, <b>our work will be sure to impress !</b>&nbsp;&nbsp;
+                    <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
+                        onClick={this.handleClickedRegister}>SIGN IN</button>
+                    <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
+                        onClick={this.handleClickedLogin}>LOG IN</button></h4>
                 </section><br/>
             <MDBContainer>
                 <MDBCarousel
@@ -141,7 +157,7 @@ export default class extends Component{
                     </div>
                 </div>
                 </div>
-            </div>)}
+                    </div>)}</div>)}
                 </div>
         )
     }

@@ -22,10 +22,30 @@ export default class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
-            username: '',
+            email: '',
             password: '',
         };
+
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
+
+    onChange(e){
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
+
+    onSubmit(e){
+        e.preventDefault();
+
+        const user={
+            email:this.state.email,
+            password:this.state.password
+        }
+    }
+    
+
     updateUsername(username) {
         this.setState({
             username: username.target.value
@@ -64,16 +84,16 @@ export default class Login extends Component{
                                 <form action="" className="was-validated ">
                                     <section style={ form }><br/>
                                         <div className="col-sm-9 offset-sm-2 ">
-                                            <label htmlFor="uname" >Username : </label>
+                                            <label htmlFor="uname" >E-mail : </label>
                                             <input type="text" className="form-control" id="uname" placeholder="Enter username" name="uname"
-                                                   onChange={username=> this.updateUsername(username)} required/>
-                                            {/*<div className="valid-feedback">Valid.</div>*/}
+                                                value={this.state.email} onChange={this.onChange} required/>
+                                
                                             <div className="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                         <div className="col-sm-9 offset-sm-2">
                                             <label htmlFor="pwd">Password : </label>
                                             <input type="password" className="form-control" id="pwd" placeholder="Enter password" size="10" name="pswd"
-                                                   onChange={password=> this.updatePassword(password)} required/>
+                                                value={this.state.password} onChange={this.onChange} required/>
                                             {/*<div className="valid-feedback">Valid.</div>*/}
                                             <div className="invalid-feedback">Please fill out this field.</div>
                                         </div><br/>

@@ -25,7 +25,11 @@ export default class extends Component{
                     <a href="#">VERIFY PURCHACE ORDER</a><br/>
                     <a href="#">MATCHING ITEMS</a><br/>
                     <a href="#">SEARCH PURCHASE ORDERS</a><br/>
-                    <NavLink to={'/createRequisition'}>REQUISITIONS</NavLink>
+                    <NavLink to={'/createRequisition'}>REQUISITIONS</NavLink><br/>
+                    {/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/}
+                    {/*<button><NavLink to={'/Home'}/>LOG OUT</button>*/}
+                    <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
+                            onClick={this.handleClickDashboard}>LOG OUT </button>
 
                 </div>
                 <div className="main">
