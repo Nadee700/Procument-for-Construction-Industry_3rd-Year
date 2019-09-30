@@ -1,6 +1,10 @@
 import React,{Component} from 'react';
+import {Link,Redirect } from "react-router-dom";
+import PropTypes from 'prop-types';
 import Background from '../Images/bg2.jpg';
 import createBrowserHistory from 'history/createBrowserHistory';
+import axios from 'axios';
+
 
 const browserHistory = createBrowserHistory();
 
@@ -22,12 +26,12 @@ export default class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
-            email: '',
+            username: '',
             password: '',
         };
 
         this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        // this.onSubmit = this.onSubmit.bind(this);
     }
 
     onChange(e){
@@ -36,14 +40,7 @@ export default class Login extends Component{
         })
     }
 
-    onSubmit(e){
-        e.preventDefault();
-
-        const user={
-            email:this.state.email,
-            password:this.state.password
-        }
-    }
+    
     
 
     updateUsername(username) {
@@ -60,7 +57,8 @@ export default class Login extends Component{
 
     render() {
         const loginToSystem = (e) =>{
-            // console.log(this.state.users);
+            e.preventDefault();
+            console.log(this.state.password);
             if(this.state.username==='sitemanager'&&this.state.password==='sitemanager') {
                 browserHistory.push('/SiteManagerHome');
             }else if(this.state.username==='supervisor' && this.state.password==='supervisor'){
@@ -78,23 +76,23 @@ export default class Login extends Component{
                 <section style={ sectionStyle }>
                     <div className="col-sm-20 offset-sm-1 align-content-md-center">
 
-                        <form onSubmit={this.onSubmit}>
+                        <form>
                             <div className="container">
                                 <br/>
                                 <form action="" className="was-validated ">
                                     <section style={ form }><br/>
                                         <div className="col-sm-9 offset-sm-2 ">
                                             <label htmlFor="uname" >E-mail : </label>
-                                            <input type="text" className="form-control" id="uname" placeholder="Enter username" name="uname"
-                                                value={this.state.email} onChange={this.onChange} required/>
+                                            <input type="text" className="form-control" id="username" placeholder="Enter username" name="username" onChange={(e) => this.updateUsername(e)}
+                                                required/>
                                 
                                             <div className="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                         <div className="col-sm-9 offset-sm-2">
-                                            <label htmlFor="pwd">Password : </label>
-                                            <input type="password" className="form-control" id="pwd" placeholder="Enter password" size="10" name="pswd"
-                                                value={this.state.password} onChange={this.onChange} required/>
-                                            {/*<div className="valid-feedback">Valid.</div>*/}
+                                            <label htmlFor="password">Password : </label>
+                                            <input type="password" className="form-control" id="password" placeholder="Enter password" size="10" name="password" onChange={(e) => this.updatePassword(e)}
+                                               required/>
+                                           
                                             <div className="invalid-feedback">Please fill out this field.</div>
                                         </div><br/>
                                         <div className="col-sm-9 offset-sm-2 ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -102,6 +100,7 @@ export default class Login extends Component{
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" onClick={loginToSystem}>Login</button>
+                                            <Link to={'/Home'}><button className="btn btn-outline-success col-sm-20 offset-sm-1 align-content-md-center" >Back</button></Link>
                                         </div>
                                         <br/>
                                     </section>

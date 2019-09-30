@@ -153,12 +153,19 @@ export default class extends Component{
                                 </div>
                             </div>
                         </section>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+                    </div>
                     </div>
                 </div>
-                </div>
-                    </div>)}</div>)}
-                </div>
+                <div className="container">
+               
+                 <p>Our in-house work includes but is not limited to sidewalks, concrete pads and ramps, framing, drywall, acoustical ceilings,
+                 wood trim work, doors, frames, locks, and pallet racking systems. For work not completed in-house, we have an extensive list of
+                 qualified contractors.</p>
+                 </div>
+                 </div>)}</div>)}
+                            </div>
+                 
+                
         )
     }
 

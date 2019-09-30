@@ -1,34 +1,37 @@
 const mongoose = require('mongoose');
 
-const supplierSchema = mongoose.Schema({
+const purchaseOrderSchema = mongoose.Schema({
 
-    sid:{
-        type:String
-    },
-    companyName:{
+    id:{
         type:String,
-        required:true
+    },
+    userId:{
+        type:String
     },
     siteName:{
         type:String,
         required:true
     },
-    email:{
+    itemName:{
         type:String,
         required:true
     },
-    regNo:{
-        type:Number,
-        required:true
-    },
-    cNo:{
-        type:Number,
-        required:true
-    },
-    cPerson:{
+    type:{
         type:String,
+        required:true
+    },
+    quantity:{
+        type:Number,
+        required:true
+    },
+    total:{
+        type:Number,
+        required:true
+    },
+    deliveryDate:{
+        type:Date,
         required:true
     }
 });
 
-module.exports = mongoose.model('suppliers', supplierSchema);
+module.exports = mongoose.model('purchaseOrder',purchaseOrderSchema);

@@ -1,13 +1,13 @@
 const express =  require('express');
 const router = express.Router();
-const Requisition = require('../models/requisition');
+const PurchaseOrder = require('../models/purchaseOrder');
 
 
 //Get all the REQUISITION Deatails
 router.get('/',async (req,res)=>{
     try{
-        const requisition = await Requisition.find();
-        res.json(requisition);
+        const purchase = await PurchaseOrder.find();
+        res.json(purchase);
     }catch(err){
         res.json({message:err});
     }
@@ -17,18 +17,16 @@ router.get('/',async (req,res)=>{
 // Sumbit a REQUISITION Details
 router.post('/',async (req,res)=> {
  //  console.log(req.body);
-    const requDetails = new Requisition({
+    const purchaseDetails = new PurchaseOrder({
         siteName:req.body.siteName,
         itemName:req.body.itemName,
         type:req.body.type,
         quantity:req.body.quantity,
-        perAgreedPrice:req.body.perAgreedPrice,
-        perApprovedSupplier:req.body.perApprovedSupplier,
-        AccountNo:req.body.AccountNo,
-        createdAt:req.body.createdAt
+        total:req.body.total,
+        deliveryDate:req.body.deliveryDate
     });
 
-    requDetails.save()
+    purchaseDetails.save()
     .then(data =>{
         res.json(data);
        console.log('save data to db');

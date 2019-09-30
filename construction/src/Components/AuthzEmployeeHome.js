@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import '../css/authzEmployee.css';
+import {NavLink} from "react-router-dom";
 import authzEmployee from '../Images/authzEmployee.jpg';
 import auzEmployee from '../Images/auzEmployee.jpg';
 
@@ -23,8 +24,8 @@ export default class extends Component{
                     <br/><br/>
                     <a href="#">HOME</a><br/>
                     <a href="#">SHOW REQUISIONS</a><br/>
-                    <a href="#">NEW ALERTS</a><br/>
-                    <a href="#">APPROVED REQUISITIONS</a>
+                    <NavLink to={'/createRequisition'}>CREATE RQUISITIONS</NavLink><br/>
+                    <a href="#">SERVICES</a>
                 </div>
                 <div className="main">
                     <h2> Home Page</h2>

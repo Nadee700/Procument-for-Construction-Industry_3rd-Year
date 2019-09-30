@@ -1,26 +1,23 @@
 import React, {Component} from 'react';
 import construction from "../Images/construction.png";
-import '../css/authzEmployee.css';
+import '../css/supplier.css';
 import {NavLink} from "react-router-dom";
-import auzEmployee from '../Images/auzEmployee.jpg';
-
-import Inventory from "./Inventory";
-import axios from 'axios';
+import supplierPic from '../Images/supplier.jpeg';
+import SupplierDetails from './SupplierDetails';
 
 const sectionStyle = {
     width: "1080px",
     height: "500px",
     opacity: 0.80,
     paddingRight:"303px",
-    paddingLeft:"200px",
-    marginLeft: "54px",
+    paddingLeft:"190px",
+    marginLeft: "50px",
     backgroundImage: `url(${construction})`
 };
-const authzEmployee1 ={
+const supplier ={
     paddingLeft: "40px",
     paddingRight:"40px"
 };
-
 const form ={
     width: "603px", /* Full width */
     height: "600",/* Full height */
@@ -28,48 +25,45 @@ const form ={
     border: "5px solid brown",
 };
 
-
-
 export default class extends Component{
     constructor(props) {
         super(props);
 
         this.state = {
-            clickedInventory: false,
-        };
-
-
-        this.handleClickInventory = this.handleClickInventory.bind(this);
-
+            clickedAddSupplier: false,
+        }
+        this.handleClickedAddSupplier = this.handleClickedAddSupplier.bind(this);
     }
 
-    handleClickInventory() {
+    handleClickedAddSupplier() {
         this.setState({
-            clickedInventory: !this.state.clickedInventory,
-        });
+            clickedAddSupplier: !this.state.clickedAddSupplier
+        })
     }
 
 
     render(){
         return(
-            <div><br/><br/>
-                
-                <div className="sidenav" id="auzEmp">
+            <div><br/><br/>   
+                <div className="sidenav" id="supplier">
                     <br/>
-                    <section style={ authzEmployee1 }>
-                        <img src={auzEmployee} width="150px" height="160px"/><br/>
-                        <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Employee</h6>
+                    <section style={supplier}>
+                        <img src={supplierPic} width="150px" height="160px"/><br/>
+                        <h6>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Supplier</h6>
                     </section>
                     <br/><br/>
-                    <a href="#">HOME</a><br/>
+                    <NavLink to={'/SupplierHome'}>HOME</NavLink><br/>
                     <a href="#">SHOW REQUISIONS</a><br/>
-                    <NavLink to={'/createRequisition'}>CREATE RQUISITIONS</NavLink><br/>
-                    <a href="#">SERVICES</a>
+                    <a href="#">NEW ALERTS</a><br/>
+
+                    <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"
+                            onClick={this.handleClickDashboard}>LOG OUT </button>
+
                 </div>
 
                     <div className="container">
-                            {this.state.clickedInventory ? (
-                                    <Inventory/>
+                            {this.state.clickedAddSupplier? (
+                                    <SupplierDetails/>
                                     ):(
 
                                 <section style={ sectionStyle }>
@@ -82,7 +76,7 @@ export default class extends Component{
                                         <label className="form-check-label">
                                             <div className="font-weight-danger align-content-md-center">
                                             <h2><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                CREATE REQUISITION</b></h2></div>
+                                                ADD SUPPLIERS</b></h2></div>
                                         </label>
                                         <br/>
 
@@ -90,7 +84,7 @@ export default class extends Component{
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                      <button className="btn btn-success col-sm-20 offset-sm-1 align-content-md-center" onClick={this.handleClickInventory}>SHOW INVENTORY</button>
+                                      <button className="btn btn-success col-sm-20 offset-sm-1 align-content-md-center" onClick={this.handleClickedAddSupplier}>ADD</button>
                                     </div>
                                     <br/>
                                 </section></div></form>

@@ -1,8 +1,7 @@
 import React,{Component} from 'react';
-import {Link} from "react-router-dom";
 import Background from '../Images/bg2.jpg';
-//import axios from 'axios';
 import createBrowserHistory from 'history/createBrowserHistory';
+import axios from 'axios'
 
 const browserHistory = createBrowserHistory();
 
@@ -23,13 +22,13 @@ const form ={
 export default class Register extends Component{
     constructor(props){
         super(props);
-
         this.state={
             firstName:'',
             lastName:'',
             phnNo:'',
             password:'',
-            email:''
+            email:'',
+            role:''
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);    
@@ -39,19 +38,26 @@ export default class Register extends Component{
         this.setState({
             [e.target.name]:e.target.value
         })
+        
     }
   
     onSubmit(e){
         e.preventDefault();
 
-        const user = {
+        axios.post('http://localhost:3003/register', {
             firstName:this.state.firstName,
             lastName:this.state.lastName,
             phnNo:this.state.phnNo,
-            password : this.state.password,
-            email:this.state.email
-        }
-    }
+            email:this.state.email,
+            password:this.state.password,
+            role: 'supervisor'
+      }).then((user)=>{
+        console.log(user);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    
+          }
 
     //This functionn is create a user if his email does not exist in the db
  
@@ -64,42 +70,52 @@ export default class Register extends Component{
                 <section style={ sectionStyle }>
                 <div className="col-sm-20 offset-sm-1 align-content-md-center">
                         <section style={ form }><br/>
-                            <div className="form-row col-sm-20 offset-sm-1 align-content-md-center" >
+
+                        <div className="form-row col-sm-20 offset-sm-1 align-content-md-center" >
+                                <div className="col-md-4 mb-3 col-sm-20 offset-sm-1">
+                                <label htmlFor="validationServer01">User Role: </label>
+                                <select className="form-control selcls" id="enployee">
+                                    <option>Site Manager</option>
+                                    <option>Supervisor</option>
+                                    <option>Supplier</option>
+                                    <option>Employee</option>
+                                </select>
+                                </div>
+
                                 <div className="col-md-4 mb-3 col-sm-20 offset-sm-1">
                                 <label htmlFor="validationServer01">First Name : </label>
-                                <input type="text" className="form-control is-valid" id="validationServer01" placeholder="Enter user name" 
-                                    value={this.state.firstName} onChange={this.onChange} required/>
-                                </div><br/>
+                                <input type="text" id="validationServer01" placeholder="Enter user name" name="firstName"
+                                    //value={this.state.firstName}
+                                    onChange={event => this.onChange(event)} required/>
+                                </div>
 
                                 <div className="col-md-4 mb-3 col-sm-20 offset-sm-1 align-content-md-center">
                                 <label htmlFor="validationServer01">Last Name :</label>
-                                <input type="text" className="form-control is-valid" id="validationServer01" placeholder="First name"
-                                    value={this.state.lastName} onChange={this.onChange} required/>
+                                <input type="text" id="validationServer01" placeholder="First name" name="lastName"
+                                  //value={this.state.lastName}
+                                  onChange={event => this.onChange(event)} required/>
                                 </div>
 
                                 <div className="col-md-4 mb-3 col-sm-20 offset-sm-1 align-content-md-center">
                                 <label htmlFor="validationServer01">Contact Number :</label>
-                                <input type="number/text" className="form-control is-valid" id="validationServer01" placeholder="Contact Number"
-                                     value={this.state.phnNo} onChange={this.onChange} required/>
+                                <input type="number"  id="validationServer01" placeholder="Contact Number" name="phnNo"
+                                    // value={this.state.phnNo} 
+                                    onChange={event => this.onChange(event)} required/>
                                 </div>
                             </div>
 
                             <div className="form-row">
                                  <div className="col-md-4 mb-3 col-sm-20 offset-sm-1 " >
                                      <label htmlFor="validationServer03">Password :</label>
-                                    <input type="password" className="form-control is-invalid" id="validationServer03" placeholder="Enter Password"
-                                         Value={this.state.password} onChange={this.onChange} required/>
-                                    <div className="invalid-feedback">
-                                    Please provide a better password.
-                                    </div>
+                                    <input type="password" id="validationServer03" placeholder="Enter Password" name="password"
+                                       //  Value={this.state.password}
+                                       onChange={event => this.onChange(event)} required/>
                                  </div>
                                 <div className="col-md-4 mb-3 col-sm-20 offset-sm-1 ">
-                                    <label htmlFor="validationServer04">email : </label>
-                                     <input type="text" className="form-control is-invalid" id="validationServer04" placeholder="Enter Confirm Password"
-                                         value={this.state.email} onChange={this.onChange} required/>
-                                <div className="invalid-feedback">
-                                    Please provide a valid confirm password.
-                                </div>
+                                    <label htmlFor="validationServer04">E-mail : </label>
+                                     <input type="text" id="validationServer04" placeholder="Enter email" name="email"
+                                        // value={this.state.email} 
+                                        onChange={event => this.onChange(event)}required/>
                                 </div>
 
                             </div>
@@ -114,13 +130,14 @@ export default class Register extends Component{
                                 </div>
                         </div>
                     </div>
-                     <button className="btn btn-primary col-sm-20 offset-sm-1 align-content-md-center" type="submit" onClick={this.handleClickedBackLogin}>REGISTER</button>
-                        <Link to={'/Home'} ><button className="btn btn-primary col-sm-20 offset-sm-1 align-content-md-center" type="submit" >BACK</button></Link>
+                     <button className="btn btn-primary col-sm-20 offset-sm-1 align-content-md-center" type="submit" onClick={this.onSubmit}>REGISTER</button>
+                        <button className="btn btn-primary col-sm-20 offset-sm-1 align-content-md-center" type="submit" >BACK</button>
                         <br/><br/>
                             </section>
                         </div>
                 </section>
             </div>
+        
 
         );
     }

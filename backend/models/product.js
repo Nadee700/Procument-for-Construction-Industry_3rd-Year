@@ -4,6 +4,9 @@ const productSchema = mongoose.Schema({
 
     pid:{
         type:String,
+    },
+    siteName:{
+        type:String,
         required:true
     },
     itemName:{
@@ -18,9 +21,12 @@ const productSchema = mongoose.Schema({
         type:Number,
         required:true
     },
-    tolBudget:{
-        type:Number,
+    supplierName:{
+        type:String,
         required:true
+    },
+    updatedAt:{
+        type:Date
     }
 });
 

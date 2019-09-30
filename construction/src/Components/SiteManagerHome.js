@@ -22,10 +22,10 @@ export default class extends Component{
                     </section>
                     <br/><br/>
                     <NavLink to={'/SiteManagerHome'}>HOME</NavLink><br/>
-                    <a href="#">VERIFY PURCHACE ORDER</a><br/>
-                    <a href="#">MATCHING ITEMS</a><br/>
+                    <NavLink to={'/ViewPurchaseOrder'}>VIEW PURCHACE ORDER</NavLink><br/>
                     <a href="#">SEARCH PURCHASE ORDERS</a><br/>
-                    <NavLink to={'/createRequisition'}>REQUISITIONS</NavLink><br/>
+                    <NavLink to={'/CreatePurchaceOrder'}>APPROVAL REQUISITIONS</NavLink><br/>
+                    <a href="#">INVENTORY DETAILS</a><br/>
                     {/*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/}
                     {/*<button><NavLink to={'/Home'}/>LOG OUT</button>*/}
                     <button className="btn btn-outline-danger col-sm-20 offset-sm-1 align-content-md-center" type="submit"

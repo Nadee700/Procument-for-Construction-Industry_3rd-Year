@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
+
+import axios from 'axios'; 
 import Inventory from "../Images/bg2.jpg";
 import BootstrapTable from 'react-bootstrap-table-next';
-import InventoryDetails from './InventoryDetails';
+import RequisitionDetails from './RequisitionDetails';
 
 const sectionStyle = {
     width: "1100px",
@@ -26,6 +28,7 @@ export default class extends Component {
 
         this.state = {
             clickedInventoryDetails: false,
+        
             products: [
                 {
                     id: 1,
@@ -59,6 +62,11 @@ export default class extends Component {
 
     }
 
+    componentWillMount(){
+        let products = axios.get('http://localhost:3003/products');
+        console.log(products)
+    }
+
     handleClickInventoryDetails() {
         this.setState({
             clickedInventoryDetails: !this.state.clickedInventoryDetails,
@@ -69,7 +77,7 @@ export default class extends Component {
         return (
             <div className="container">
                 {this.state.clickedInventoryDetails ? (
-                    <InventoryDetails/>
+                    <RequisitionDetails/>
                 ):(
 
                     <section style={ sectionStyle }><br/>

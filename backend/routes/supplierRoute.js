@@ -1,25 +1,47 @@
-const express = require('express');
+const express =  require('express');
 const router = express.Router();
-
 const Supplier = require('../models/supplier');
 
-router.get('/',(req,res,next)=>{
-    res.status(200).json({
-        message:'Handling get requests to products'
-    });
-});
 
-router.post('/',async(req,res,next)=>{
-    const Supplier = new Supplier({
-        id:req.body.id,
-        name:req.body.name,
-        address:req.body.address,
-        phnNo:req.body.phnNo
-    });
+//Get all the SUPPLIERS Deatails
+router.get('/',async (req,res)=>{
     try{
-        const savedPost = await post.save();
-        res.json(savedPost);
+        const addSupplier = await Supplier.find();
+        res.json(purchase);
     }catch(err){
         res.json({message:err});
     }
-})
+   
+});
+
+// Sumbit a SUPPLIERS Details
+router.post('/',async (req,res)=> {
+ //  console.log(req.body);
+    const SupplierDetails = new Supplier({
+        companyName:req.body.companyName,
+        siteName:req.body.siteName,
+        email:req.body.email,
+        regNo:req.body.regNo,
+        cNo:req.body.cNo,
+        cPerson:req.body.cPerson,
+       
+    });
+
+    SupplierDetails.save()
+    .then(data =>{
+        res.json(data);
+       console.log('save data to db');
+    })
+    .catch(err=> {
+        res.json({message:err});
+    })
+
+    // try{
+    //     const savedDetails = await regDetails.save();
+    //     res.json(savedDetails);
+    // }catch(err){
+    //     res.json({message:err});
+    // }
+});
+
+module.exports = router;
